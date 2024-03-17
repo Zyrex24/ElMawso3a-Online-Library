@@ -1,0 +1,1 @@
+This is an online library website project repository with HTML structure, CSS stylesheets, JavaScript for dynamic display, Django Python for backend, and MySQL for database. It features responsive design, interactive web elements, and modern web design standards. Navigate to the master branch to reach the project's source code.
