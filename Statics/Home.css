@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2 {
+    margin-bottom: 10px;
+}
+
+
+
+#search2 {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#search3 {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section img {
+    margin: 5px;
+    height: 150px;
+    width: 150px;
+}
+
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px;
+}
+
+.scroll-container a {
+    flex: 0 0 auto;
+}
+
+.scroll-container img {
+    max-width: 200px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.featured-books{
+    padding-bottom: 120px;
+    
+}
+
+.main {
+    padding-top: 80px;
+}
+
+.cl {
+    background-color: #F6F1F1;
+}

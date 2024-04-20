@@ -1,46 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" id="onlineLibrary">
-    <head>
+<head>
 
-        <!-- Meta data and title -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Login to ElMaswso3a to check the latest books and maybe find a book that interests you!">
-        <title id="pageTitle">ElMawso3a - Login</title>
+    <!-- Meta data and title -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login to ElMaswso3a to check the latest books and maybe find a book that interests you!">
+    <title id="pageTitle">ElMawso3a - Login</title>
+    <link rel="stylesheet" href="../Statics/login.css">
+    <link rel="stylesheet" href="../Statics/header.css">
 
-    </head>
-    <body>
-        <div>
-            <header>
-                <nav>
-                    <a href="index.html"><img src="../designs/ElMawso3a.png" alt="ElMaswso3a Logo" height="60px" width="180px"></a>
-                    | <a href="feedback.html">Feedback</a> | <a href="cart.html">Cart</a> |
-                    <a href="profile.html">Profile</a> | <a href="login.html">Login/Register</a>
-                </nav>
-            </header>
-            <div>
-            <div>
-                <form action="" method="post" enctype="multipart/form-data">
-                    <h3 id="loginTitle">Login</h3>
-                    
-                    <input type="text" name="username" id="user" placeholder="Username" autofocus="1" aria-label="Username">
-                    
-                    <input type="password" name="password" id="pass" placeholder="Password" autofocus="1" aria-label="Password">
-                    
-                    <a href="register.html" id="registerLink">Create new account</a>
-                    
-                    <a href="forgotPassword.html" id="forgotPasswordLink">Forgot your password?</a>
-                    
-                    <button type="submit" id="loginButton">Log in</button>
-                </form>
-            </div>
-            <footer>
-                <br>
-                <p>&copy; ElMaswso3a</p>
-                <a href="contactus.html">Contact Us</a> | <a href="privacypolicy.html">Privacy Policy</a> | <a
-                    href="termsofservices.html">Terms of Service</a> |
-                <a href="aboutus.html">About Us</a>
-            </footer>
+</head>
+<body class="cl">
+<div class="login-container">
+        <div class="WebImg">
+            <nav>
+                <a href="index.html"><img src="../designs/ElMawso3a3.png" alt="ElMaswso3a Logo" class="header_img2"></a>
+            </nav>
         </div>
-    </body>
+    <div>
+        <div>
+            <form action="" method="post" enctype="multipart/form-data">
+                <h2 id="loginTitle">Login</h2>
+
+                <div class="login-input">
+                    <label for="user">Username</label>
+                    <input type="text" name="username" id="user" placeholder="Enter Your Username" autofocus="1" aria-label="Username" required>
+                </div>
+
+                <div class="login-input">
+                    <label for="pass">Password</label>
+                    <input type="password" name="password" id="pass" placeholder="Enter Your Password" autofocus="1" aria-label="Password" required>
+                </div>
+
+                <button type="submit" id="loginButton">Log in</button>
+
+                <a href="forgotPassword.html" id="forgotPasswordLink" class="forgot-Password">Forgot your password?</a>
+            </form>
+            <p>Don't Have An Account? <a href="register.html" id="registerLink" class="New-Acc">Sign Up</a></p>
+        </div>
+    </div>
+</body>
 </html>

@@ -1,0 +1,73 @@
+.login-container {
+    max-width: 380px;
+    margin: 50px auto;
+    background-color: #AFD3E2;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-input {
+    margin-bottom: 20px;
+}
+
+.login-input label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.login-input input[type="text"],
+.login-input input[type="email"],
+.login-input input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-input select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.Sign-In {
+    font-size: 17px;
+    color: #007bff;
+    margin-left: 111px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    background-color: #0091ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.header_img2 {
+    width: 180px;
+    height: 60px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.cl {
+    background-color: #19A7CE;
+}

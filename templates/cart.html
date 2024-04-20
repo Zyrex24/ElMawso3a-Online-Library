@@ -3,41 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Feedback - ElMaswso3a</title>
-    <link rel="stylesheet" href="../Statics/feedback.css">
+    <meta name="description" content="Add to your cart to borrow or buy books or novels.">
+    <title>Cart - ElMaswso3a</title>
     <link rel="stylesheet" href="../Statics/header.css">
     <link rel="stylesheet" href="../Statics/footer.css">
+    <link rel="stylesheet" href="../Statics/cart.css">
+
 </head>
-<body>
+<body class="cl">
 <div>
     <header class="header">
         <nav>
             <a href="index.html" class="header_text"><img src="../designs/ElMawso3a2.png" alt="ElMaswso3a Logo"
-            class ="header_img">
+                class ="header_img">
             </a>
             | <a href="feedback.html" class="header_text">Feedback</a> | <a href="cart.html" class ="header_text">Cart</a> |
             <a href="profile.html" class="header_text">Profile</a> | <a href="login.html" class="header_text">Login/Register</a>
         </nav>
     </header>
-    <div class="feedback-container">
-        <form method="post" onsubmit="return validateForm();">
-            <div>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div>
-                <label for="feedback">Feedback:</label>
-                <textarea id="feedback" name="feedback" placeholder="Write your feedback here..." required></textarea>
-            </div>
-            <div>
-                <input type="submit" value="Send">
-            </div>
-        </form>
-    </div>
+    <section>
+        <h1 class="head_title">Your Cart</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Placeholder for cart items -->
+            </tbody>
+        </table>
+    </section>
     <footer class="footer">
         <p>&copy; ElMaswso3a</p>
         <a href="contactus.html">Contact Us</a> | <a href="privacypolicy.html">Privacy Policy</a> | <a
@@ -45,6 +43,5 @@
         <a href="aboutus.html">About Us</a>
     </footer>
 </div>
-<script src="../Javascripts/feedback.js"></script>
 </body>
 </html>

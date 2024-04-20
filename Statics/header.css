@@ -1,0 +1,41 @@
+    .header {
+        background-color: #19A7CE;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transition: background-color 0.3s ease;
+        z-index: 1000;
+        padding: 10px 0;
+        text-align: left;
+    }
+
+    .main-header {
+        background-color: RGBA(25, 167, 206, 0.5);
+    }
+
+    header nav {
+        background-color: #19A7CE;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .header nav img
+    {   
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 180px;
+        height: 55px;
+    }
+    .header_img {
+        
+        width: 180px;
+        height: 55px;
+    }
+
+    header nav a {
+        text-decoration: none;
+        color: #F6F1F1;
+        margin: 10px;
+    }

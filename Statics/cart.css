@@ -1,0 +1,33 @@
+section {
+    margin: 50px;
+    margin-top: 100px;
+    padding-bottom: 1px;
+
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 390px;
+}
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+th {
+    background-color: #AFD3E2;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.head_title {
+    text-align: center;
+    font-size: 30px;
+    color: #146C94;
+}
+
+.cl {
+    background-color: #F6F1F1;
+}
