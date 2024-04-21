@@ -8,22 +8,21 @@
     <link rel="stylesheet" href="../Statics/header.css">
     <link rel="stylesheet" href="../Statics/footer.css">
     <link rel="stylesheet" href="../Statics/cart.css">
-
+    <script src="../Javascripts/cart.js"></script>
 </head>
-<body class="cl">
+<body>
 <div>
-    <header class="header">
-        <nav>
-            <a href="index.html" class="header_text"><img src="../designs/ElMawso3a2.png" alt="ElMaswso3a Logo"
-                class ="header_img">
-            </a>
-            | <a href="feedback.html" class="header_text">Feedback</a> | <a href="cart.html" class ="header_text">Cart</a> |
-            <a href="profile.html" class="header_text">Profile</a> | <a href="login.html" class="header_text">Login/Register</a>
+    <header class="header" id="header">
+        <nav class="navbar" id="navbar">
+            <a href="index.html" class="header_img"><img src="../designs/ElMawso3a2.png" alt="ElMaswso3a Logo"></a>
+            | <a href="feedback.html" class="header_text">Feedback</a> | <a href="cart.html" class="header_text">Cart</a> |
+            <a href="profile.html" class="header_text">Profile</a> | <a href="login.html"
+                class="header_text">Login/Register</a> <a href="admin.html" id="header_adminbf">Admin Dashboard</a>
         </nav>
     </header>
-    <section>
+    <section >
         <h1 class="head_title">Your Cart</h1>
-        <table>
+        <table id="cart-table" inert="inert">
             <thead>
             <tr>
                 <th>Item</th>
@@ -35,6 +34,9 @@
             <!-- Placeholder for cart items -->
             </tbody>
         </table>
+        <button id="add-button" onclick="addToCart('book', '5$');" class="cart-button">Add to your cart</button>
+        <button id="clear-button" onclick="clearCart();" class="cart-button">Clear Cart</button>
+        <button id="borrow-button" onclick="goToBorrow();" class="cart-button">Borrow</button>
     </section>
     <footer class="footer">
         <p>&copy; ElMaswso3a</p>
@@ -43,5 +45,8 @@
         <a href="aboutus.html">About Us</a>
     </footer>
 </div>
+
+
+
 </body>
 </html>

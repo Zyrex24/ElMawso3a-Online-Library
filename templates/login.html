@@ -9,6 +9,7 @@
     <title id="pageTitle">ElMawso3a - Login</title>
     <link rel="stylesheet" href="../Statics/login.css">
     <link rel="stylesheet" href="../Statics/header.css">
+    <script src="../Javascripts/login.js"></script>
 
 </head>
 <body class="cl">
@@ -33,7 +34,7 @@
                     <input type="password" name="password" id="pass" placeholder="Enter Your Password" autofocus="1" aria-label="Password" required>
                 </div>
 
-                <button type="submit" id="loginButton">Log in</button>
+                <button type="button" onclick="saveData()" id="loginButton">Log in</button>
 
                 <a href="forgotPassword.html" id="forgotPasswordLink" class="forgot-Password">Forgot your password?</a>
             </form>

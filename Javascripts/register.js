@@ -22,3 +22,29 @@ function validateForm(){
     }
     return true;
 }
+
+function saveData(){
+    let user,email,password,role;
+    user=document.getElementById('user').value;
+    email=document.getElementById('email').value;
+    password=document.getElementById('pass').value;
+    role=document.getElementById('role').value;
+    // localStorage.setItem('user',user);
+    // localStorage.setItem('email',email);
+    // localStorage.setItem('password,',password);
+    // localStorage.setItem('role',role);
+
+    let userRecords = new Array();
+    userRecords = JSON.parse(localStorage.getItem('users'))?JSON.parse(localStorage.getItem('users')):[]
+    if(userRecords.some((v)=>{
+        return v.user === user
+    })){
+        alert('Username already exists');
+    }else{
+        userRecords.push({
+            "user":user,"email":email,"password":password,"role":role});
+        localStorage.setItem('users',JSON.stringify(userRecords));
+        alert('User registered successfully');
+        window.location.href = 'login.html';
+    }
+}

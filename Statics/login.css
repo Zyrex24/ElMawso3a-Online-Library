@@ -50,7 +50,21 @@ button[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
+button[type="button"] {
+    background-color: #0091ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+button[type="button"]:hover {
     background-color: #0056b3;
 }
 

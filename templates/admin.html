@@ -8,25 +8,26 @@
         <link rel="stylesheet" href="../Statics/admin.css">
         <link rel="stylesheet" href="../Statics/header.css">
         <link rel="stylesheet" href="../Statics/footer.css">
-        <script src="../Javascripts/script.js"></script>
+        <script src="../Javascripts/admin.js"></script>
+        <script src="../Javascripts/header.js"></script>
     </head>
     <body>
         <div class="admin-container">
             <header class="header" id="header">
                 <nav class="navbar" id="navbar">
-                    <a href="index.html" class="header_img"><img src="../designs/ElMawso3a2.png" alt="ElMaswso3a Logo"></a>
+                    <a href="index.html" class="header_img"><img src="../designs/ElMawso3a2.png" alt="ElMaswso3a Logo"></a> 
                     | <a href="feedback.html" class="header_text">Feedback</a> | <a href="cart.html" class="header_text">Cart</a> |
-                    <a href="profile.html" class="header_text">Profile</a> | <a href="login.html" class="header_text">Login/Register</a>
+                    <a href="profile.html" class="header_text">Profile</a> | <a href="login.html" class="header_text">Login/Register</a> <a href="admin.html" id="header_adminbf">Admin Dashboard</a>
                 </nav>
             </header>
             <section class="main cl">
                 <h1>Admin Dashboard</h1>
                 <p>Welcome, Admin! You have access to the following features:</p>
                 <ul>
-                    <li><button>View all books in the library</button></li>
-                    <li><button> Add new books to the library</button></li>
-                    <li><button>Update existing books in the library</button></li>
-                    <li><button>Delete books from the library</button></li>
+                    <li><button id="viewBtn" onclick="handleClick(event);">View all books in the library</button></li>
+                    <li><button id="addBtn" onclick="handleClick(event);">Add new books to the library</button></li>
+                    <li><button id="updateBtn" onclick="handleClick(event);">Update existing books in the library</button></li>
+                    <li><button id="deleteBtn" onclick="handleClick(event);">Delete books from the library</button></li>
                 </ul>
             </section>
             <footer class="footer" id="footer">

@@ -30,21 +30,22 @@
     </script>
 </head>
 <body class="cl">
-    <header class="header">
-        <nav>
-            <a href="index.html"><img src="../designs/ElMawso3a2.png" alt="ElMaswso3a Logo" height="60px" width="180px"></a>
-            | <a href="feedback.html">Feedback</a> | <a href="cart.html">Cart</a> |
-            <a href="profile.html">Profile</a> | <a href="login.html">Login/Register</a>
+    <header class="header" id="header">
+        <nav class="navbar" id="navbar">
+            <a href="index.html" class="header_img"><img src="../designs/ElMawso3a2.png" alt="ElMaswso3a Logo"></a>
+            | <a href="feedback.html" class="header_text">Feedback</a> | <a href="cart.html" class="header_text">Cart</a> |
+            <a href="profile.html" class="header_text">Profile</a> | <a href="login.html"
+                class="header_text">Login/Register</a> <a href="admin.html" id="header_adminbf">Admin Dashboard</a>
         </nav>
     </header>
     <br>
     <div class="confirm-borrow-box">
         <h1 class="main-cbtitle">Confirm Borrow</h1>
         <div class="book-details">
-            <img class="book-image" th:src="${book.thumbnailUrl}" alt="Thumbnail">
-            <h3 class="book-title" th:text="${book.title}"></h3>
-            <p class="book-author" th:text="${book.authors}"></p>
-            <p class="book-description" th:text="${book.description}"></p>
+            <img class="book-image" src="${book.thumbnailUrl}" alt="Thumbnail">
+            <h3 class="book-title" text="${book.title}"></h3>
+            <p class="book-author" text="${book.authors}"></p>
+            <p class="book-description" text="${book.description}"></p>
         </div>
 
         <div class="form-section">
@@ -52,10 +53,10 @@
             <input type="date" id="date" name="date" placeholder="date" readonly>
         </div>
 
-        <form class="form-section" th:action="@{/borrow/add}" method="post">
+        <form class="form-section" action="@{/borrow/add}" method="post">
             <label for="returnDate" id="returnDateLabel">Return Date:</label>
             <input class="return-date-input" type="date" id="returnDate" name="endDate" required>
-            <input type="hidden" name="bookId" th:value="${book.id}" />
+            <input type="hidden" name="bookId" value="${book.id}" />
             <button class="borrow-button" type="submit">Borrow</button>
         </form>
     </div>

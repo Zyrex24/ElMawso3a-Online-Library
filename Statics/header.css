@@ -34,6 +34,19 @@
         height: 55px;
     }
 
+    #header_adminbf {
+        color: #ffffff;
+        text-decoration: none;
+        margin: 10px;
+        cursor: default;
+    }
+
+    #header_admin {
+        text-decoration: none;
+        color: #F6F1F1;
+        margin: 10px;
+    }
+    
     header nav a {
         text-decoration: none;
         color: #F6F1F1;

@@ -42,7 +42,7 @@
     margin-bottom: 10px;
 }
 
-button[type="submit"] {
+button[type="button"] {
     background-color: #0091ff;
     color: white;
     border: none;
@@ -64,7 +64,7 @@ nav {
     margin-bottom: 20px;
 }
 
-button[type="submit"]:hover {
+button[type="button"]:hover {
     background-color: #0056b3;
 }
 
