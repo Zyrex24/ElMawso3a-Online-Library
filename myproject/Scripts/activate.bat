@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=D:\Visual_Studio\CODES\web\myproject
+set VIRTUAL_ENV=D:\Visual_Studio\CODES\ElMawso3a-Online-Library\myproject
 
 if not defined PROMPT set PROMPT=$P$G
 
