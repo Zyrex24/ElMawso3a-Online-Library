@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Borrowed Books - ElMaswso3a{% endblock %}
+
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/borrowedbooks.css'%}">
+    <style>
+        .footer{
+            position: {% if card_container %} fixed; {% else %} relative; {% endif %}
+        }
+    </style>
+
+        <div class="borrowed-books-container">
+            <h1 class="borrowed-books-title">Borrowed Books</h1>
+            <div class="card-container" id="card-container">
+                {% for item in borrowed_books %}
+                <a href="{% url 'book' pk=item.book.id %}">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="book-title">{{ item.book.title }}</h2>
+                    </div>
+                    <div class="card-thumbnail">
+                        <img src="{{ item.book.image }}" alt="Book Image">
+                    </div>
+                    <div class="card-body">
+                        <div class="book-details">
+                            <ul class="author-list">
+                                <li>{{ item.book.author }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        
+{% endblock %}

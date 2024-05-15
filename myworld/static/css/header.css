@@ -1,0 +1,61 @@
+.header {
+    background-color: #19A7CE;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Align items vertically in the center */
+    width: 100%;
+    height: 55px;
+}
+
+.header nav {
+    padding: 10px;
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Align items vertically in the center */
+}
+
+.header nav img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 180px;
+    height: 55px;
+}
+
+.header_text {
+    text-decoration: none;
+    color: #F6F1F1;
+    margin: 0 10px; /* Adjust margin for better spacing */
+}
+
+.header_greeting,
+.header_logout {
+    text-decoration: none;
+    color: white;
+    font: 1em Arial, sans-serif;
+}
+
+/* Positioning for admin-related elements */
+#header_adminbf {
+    margin-right: 10px;
+}
+
+.header_greeting {
+    margin-right: auto; /* Pushes the greeting to the left */
+    position: absolute;
+    right: 5em;
+}
+
+.header_logout {
+    position: absolute;
+    right: 0.3em;
+    font:oblique 1em Arial, sans-serif;
+    top: 1.1em;
+    margin-left: 10px; /* Adjust margin for better spacing */
+}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - ElMaswso3a{% endblock %}
+
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <script src="{% static 'js/profile.js' %}"></script>
+
+        <div class="profile">
+            <h2>User Profile</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>No. of Borrowed Books</th>
+                        {% if num_borrowed_books %}
+                        <th>Action</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ request.user.id }}</td>
+                        <td>{{ request.user.username }}</td>
+                        <td>{{ request.user.email }}</td>
+                        <td>{{ num_borrowed_books }}</td>
+                        {% if num_borrowed_books %}
+                        <td><a href="{% url 'borrowedbooks' %}" class="button">View Borrowed Books</a></td>
+                        {% endif %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+{% endblock %}

@@ -1,0 +1,74 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content=" Here you can view your borrowing list.">
+        <title id="pageTitle">ElMawso3a - Borrowed Books</title>
+        <link rel="stylesheet" href="{% static 'css/borrowedbooks.css'%}">
+        <link rel="stylesheet" href="{% static 'css/header.css'%}">
+        <link rel="stylesheet" href="{% static 'css/footer.css'%}">
+    </head>
+    <body class="cl">
+        <div>
+            <header class="header" id="header">
+            <nav class="navbar" id="navbar">
+                <a href="{% url 'index' %}" class="header_img"><img src="{% static 'image/ElMawso3a2.png' %}" alt="ElMaswso3a Logo"></a> 
+                <a href="{% url 'books' %}" class="header_text">Books</a>
+                    <a href="{% url 'profile' %}" class="header_text">Profile</a>  <a href="{% url 'cart' %}" class="header_text">Cart</a> 
+                <a href="{% url 'feedback' %}" class="header_text">Feedback</a>
+                {% if not user.is_authenticated  %}
+                    <a href="{% url 'login' %}" class="header_text">Login/Register</a>
+                {% endif %}
+                {% if request.user.is_staff %}
+                    <a href="{% url 'admin' %}" class="header_text" id="header_adminbf">Admin Dashboard</a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <span class="header_greeting">{{request.user}}</span>
+                    <span><a href="{% url 'logout' %}" class="header_logout">Logout</a></span>
+                {% endif %}
+            </nav>
+        </header>
+            <div class="borrowed-books-container">
+                <h1 class="borrowed-books-title">Borrowed Books</h1>
+                <div class="card-container">
+                    <div th:each="book : ${books}" class="card">
+                        <div class="card-header">
+                            <h2 class="book-title" th:text="${book.book.title}"></h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="book-image">
+                                <img th:src="${book.book.thumbnailUrl}" alt="Book Image">
+                            </div>
+                            <div class="book-details">
+                                <ul class="author-list">
+                                    <li th:each="author : ${book.book.authors}" th:text="${author}"></li>
+                                </ul>
+                                <p class="book-description" th:text="${book.book.description}"></p>
+                                <div class="date-container">
+                                    <div class="start-date-container">
+                                        <div class="date-label">Start Date:</div>
+                                        <p class="start-date" th:text="${book.startDate}"></p>
+                                    </div>
+                                    <div class="end-date-container">
+                                        <div class="date-label">End Date:</div>
+                                        <p class="end-date" th:text="${book.endDate}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <footer class="footer">
+                <br>
+                <p>&copy; ElMaswso3a</p>
+                <a href="{% url 'contactus' %}">Contact Us</a> | <a href="{% url 'privacypolicy' %}">Privacy Policy</a> | <a
+                href="{% url 'termsofservices' %}">Terms of Service</a> |
+            <a href="{% url 'aboutus' %}">About Us</a>
+            </footer>
+        </div>
+    </body>
+</html>

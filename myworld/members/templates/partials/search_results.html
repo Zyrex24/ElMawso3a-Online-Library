@@ -1,0 +1,16 @@
+{% for book in books %}
+    <li>
+    <a href="{% url 'book' pk=book.id %}">{{ book.title }}
+    {% if book.image %}
+        <img src="{{ book.image }}" alt="{{ book.title }} image">
+    {% endif %}
+    </a>
+    <p>Author(s): {{ book.author }} </p>
+    {% if book.category %} <p>Category: {{ book.category }} </p> {% endif %}
+    {% if book.available %}
+            <p class="book-text book-availability">Available</p>
+        {% else %}
+            <p class="book-text book-availability">Not Available</p>
+    {% endif %}
+    </li>
+{% endfor %}

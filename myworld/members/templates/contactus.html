@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us - ElMaswso3a{% endblock %}
+
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/contactusStyle.css' %}">
+
+        <div class="cl">
+            <div class="contact-us">
+                <div class="image-container">
+                    <img src="{% static 'image/contactus2.webp' %}" alt="contact-us">
+                    <div class="contactusText">
+                        <h1 id="contactusMainHeader">Contact us</h1>
+                        <p class="contactusP">Our team is here for you. Browse our product, sales, technical, and shipping support. Or get in touch directly and we'll help you find exactly what you need.</p>
+                        <br>
+                        <a id="contactusLink" class="Privacylink" href="mailto:omertarek131@gmail.com">Send problem via email</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+{% endblock %}

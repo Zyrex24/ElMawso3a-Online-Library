@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.title }} - ElMaswso3a{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/books.css' %}">
+    <div class="bookdis" style="display: flex; align-items: flex-start;">
+        {% if book.image %}<img class="book_image" src="{{ book.image }}" alt="{{ book.title }} thumbnail">{% endif %}
+        <div class="book-details">
+            <h1>{{ book.title }}</h1>
+            {% if book.author %}
+                <p class="book-text">Authors: {{ book.author }}</p>
+            {% endif %}
+            {% if book.isbn %}
+                <p class = "book-text">ISBN: {{ book.isbn }}</p>
+            {% endif %}
+            {% if book.publisher %}
+                <p class = "book-text">Publisher: {{ book.publisher }}</p>
+            {% endif %}
+            {% if book.description %}
+                <p>Description: {{ book.description }}</p>
+            {% endif %}
+            {% if book.category %}
+                <p class="book-text">Category: {{ book.category }}</p>
+            {% endif %}
+            {% if book.available %}
+                <p class="book-text book-availability">Available</p>
+                <form method="post" action="{% url 'cart' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="book" value="{{ book.id }}">
+                    <input type="hidden" name="book_title" value="{{ book.title }}"> <!-- Add this line -->
+                    <button type="submit">Borrow</button>
+                </form>
+            {% else %}
+                <p class="book-text book-availability">Not Available</p>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}

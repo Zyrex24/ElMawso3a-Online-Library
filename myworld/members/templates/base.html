@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} - ElMaswso3a{% endblock %}</title>
+    {% load static %}
+</head>
+<body class="cl">
+    <div class="cl">
+        {% include 'header.html' %}
+        <main>
+        {% block content %}
+        {% endblock %}
+        </main>
+        {% include 'footer.html' %}
+    </div>
+</body>
+</html>

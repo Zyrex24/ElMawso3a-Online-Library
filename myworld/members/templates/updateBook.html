@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/update_book.css' %}">
+    <div class="form-container">
+        <h1 id="update-heading">Update Book</h1>
+        <form method="POST" id="update-form">
+            {% csrf_token %}
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" name="title" id="title-input" value="{{ book.title }}" class="form-input">
+            <br>
+            <label for="author" class="form-label">Author:</label>
+            <input type="text" name="author" id="author-input" value="{{ book.author }}" class="form-input">
+            <br>
+            <label for="isbn" class="form-label">ISBN:</label>
+            <input type="text" name="isbn" id="isbn-input" value="{{ book.isbn }}" class="form-input">
+            <br>
+            <label for="publisher" class="form-label">Publisher:</label>
+            <input type="text" name="publisher" id="publisher-input" value="{{ book.publisher }}" class="form-input">
+            <br>
+            <label for="description" class="form-label">Description:</label>
+            <textarea name="description" id="description-input" class="form-textarea">{{ book.description }}</textarea>
+            <br>
+            <label for="category" class="form-label">Category:</label>
+            <input type="text" name="category" id="category-input" value="{{ book.category }}" class="form-input">
+            <br>
+            <label for="image" class="form-label">Image Url:</label>
+            <input type="url" name="image" id="image-input" class="form-input-file" value="{{ book.image }}">
+            <br>    
+            <input type="submit" value="Update" id="update-button" class="form-button">
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,100 @@
+section {
+    margin: 100px 50px 50px;
+
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 390px;
+}
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+th {
+    background-color: #AFD3E2;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.head_title {
+    text-align: center;
+    font-size: 30px;
+    color: #146C94;
+}
+.cart-button{
+
+        background-color: #19A7CE; 
+        color: white;
+        padding: 10px 20px; 
+        border: none; 
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+
+
+}
+
+.cl {
+    background-color: #f1f1f1;
+}
+
+.cart-button:hover {
+    background-color: #146C94;
+}
+
+#clear-button{
+    position: absolute;
+    right: 60px;
+}
+
+
+/* Style for the form */
+#add-to-cart-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Style for the select dropdown */
+select[name="book"] {
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Style for the buttons */
+.cart-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.clear-button {
+    background-color: #dc3545;
+}
+
+.clear-button:hover {
+    background-color: #c82333;
+}
+
+/* Hover effect for the buttons */
+.cart-button:hover {
+    background-color: #0056b3;
+}
+
+/* Active effect for the buttons */
+.cart-button:active {
+    background-color: #0056b3;
+}

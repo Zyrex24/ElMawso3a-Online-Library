@@ -1,0 +1,9 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+<footer class="footer">
+        <br>
+        <p>&copy; ElMaswso3a</p>
+        <a href="{% url 'contactus' %}">Contact Us</a> | <a href="{% url 'privacypolicy' %}">Privacy Policy</a> | <a href="{% url 'termsofservices' %}">Terms of Service</a> |
+        <a href="{% url 'aboutus' %}">About Us</a>
+    </footer>

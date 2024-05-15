@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2 {
+    margin-bottom: 10px;
+}
+
+.cl {
+    background-color: #F6F1F1;
+}
+
+main {
+    margin-top: 40px;
+    padding-top: 20px;
+    padding: 20px;
+}
+
+/* Style for the list of books */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Style for each book item */
+li {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+/* Style for book titles */
+li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Style for book images */
+li img {
+    max-width: 100px;
+    /* Limit the width of the image */
+    height: auto;
+    /* Maintain aspect ratio */
+    display: block;
+    /* Prevent image from affecting text flow */
+    margin-top: 5px;
+    /* Add some space above the image */
+}
+
+.book_image {
+    margin-right: 20px;
+    margin: 5px;
+    height: 400px;
+    width: 300px;
+}
+.book-text{
+    right: 0;
+    
+}
+
+#search2 {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#search3 {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.bookdis {
+    margin-bottom: 140px;
+}
+
+
+.book_image {
+    margin-right: 20px;
+    margin: 5px;
+    height: 400px;
+    width: 300px;
+}
+
+.book-text {
+    margin-bottom: 10px;
+}
+
+/* Style for the add to cart button */
+button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for the add to cart button */
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Active effect for the add to cart button */
+button[type="submit"]:active {
+    background-color: #0056b3;
+}
+
+/* Style for forms within the book details page */
+form {
+    margin-top: 20px;
+}
+
+/* Style for book description */
+p {
+    margin-bottom: 10px;
+}
+
+/* Style for the book title */
+h1 {
+    margin-bottom: 10px;
+}
+
+/* Style for the book authors, ISBN, and publisher */
+.book-details {
+    margin-bottom: 10px;
+}
+
+/* Style for the book availability */
+.book-availability {
+    font-weight: bold;
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Add to your cart to borrow or buy books or novels.">
+    {% load static %}
+    <title>Borrow - ElMaswso3a</title>
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+</head>
+<body class="cl">
+<div>
+    
+    {% include 'header.html' %}
+
+    <section>
+        <h1 class="head_title">Borrow</h1>
+        <!-- Table to display cart items -->
+        <table id="cart-table">
+            <thead>
+                <tr>
+                    <th>Item(s)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Cart items will be dynamically loaded here -->
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.book.title }}</td>
+                    <td>
+                        <button type="button" id="return-button" class="cart-button" data-item-id="{{ item.book.id }}">Return</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Form to add items to cart -->
+        <form id="add-to-cart-form">
+            {% csrf_token %}
+            <select name="book" title="book">
+                {% for book in all_books %}
+                    {% if book.title == selected_book_title %} <!-- Check if the current book matches the selected book -->
+                        <option value="{{ book.id }}" selected>{{ book.title }}</option> <!-- Set as selected -->
+                    {% else %}
+                        <option value="{{ book.id }}">{{ book.title }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <button type="submit" id="add-button" class="cart-button" data-book-id="{{ book.id }}">Borrow</button>
+            <button type="button" id="clear-button" class="cart-button clear-button" name="clear_cart">Return All Books</button>
+        </form>
+    </section>
+
+    {% include 'footer.html' %}
+
+</div>
+
+<!-- Import jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Return Button Functionality
+        $(document).on('click', '#return-button', function() {
+            var button = $(this);
+            var bookId = button.data('item-id');
+            var csrftoken = getCookie('csrftoken');
+    
+            $.ajax({
+                type: 'POST',
+                url: '/return-book/',
+                headers: {
+                    'X-CSRFToken': csrftoken
+                },
+                data: { book_id: bookId, csrfmiddlewaretoken: csrftoken },
+                success: function(response) {
+                    if (response.success) {
+                        // Remove the row from the table
+                        button.closest('tr').remove();
+                        var bookId = response.book_id;
+                        var bookTitle = response.book_title;
+                        // Add the book back to the available books dropdown, prepending it to maintain original position
+                        $('#add-to-cart-form select[name="book"]').prepend('<option value="' + bookId + '">' + bookTitle + '</option>');
+                        // Set the selected option to the first option in the dropdown
+                        $('#add-to-cart-form select[name="book"]').val($('#add-to-cart-form select[name="book"] option:first').val());
+                    } else {
+                        console.error(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+        // Add to Cart Button Functionality
+        $('#add-to-cart-form').submit(function(event) {
+            event.preventDefault(); // Prevent default form submission
+            var formData = $(this).serialize(); // Serialize form data
+            $.ajax({
+                type: 'POST',
+                url: '/add-to-cart/', // URL to your Django view for adding to cart
+                data: formData,
+                success: function(response) {
+                    // Handle success, maybe update the cart display
+                    if (response.success) {
+                        var bookId = response.book_id;
+                        $('#add-to-cart-form select[name="book"] option[value="' + bookId + '"]').remove();
+                        $('#cart-items').append('<tr><td>' + response.book + '</td><td><button type="button" class="cart-button" id="return-button" data-item-id="' + bookId + '">Return</button></td></tr>');
+                    } else {
+                        console.error(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Handle error
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    
+        // Clear Cart Button Functionality
+        $('#clear-button').click(function() {
+            $.ajax({
+                type: 'POST',
+                url: '/clear-cart/', // URL to your Django view for clearing the cart
+                success: function(response) {
+                    if (response.success) {
+                        $('#cart-items').empty(); // Clear cart items
+                        // Fetch all available books from the server
+                        $.ajax({
+                            type: 'GET',
+                            url: '/all-books/', // URL to your Django view for fetching all available books
+                            success: function(allBooks) {
+                                console.log('Received all books:', allBooks);
+                                // Clear and repopulate the available books dropdown
+                                $('#add-to-cart-form select[name="book"]').empty();
+                                $.each(allBooks, function(index, book) {
+                                    console.log('Processing book:', book);
+                                    $('#add-to-cart-form select[name="book"]').append('<option value="' + book.pk + '">' + book.fields.title + '</option>');
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                // Handle error
+                                console.error(xhr.responseText);
+                            }
+                        });
+                    } else {
+                        console.error(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Handle error
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    
+        // Other JavaScript code...
+    });
+    
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    
+    
+</script>
+
+</body>
+</html>

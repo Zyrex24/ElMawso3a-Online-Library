@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Feedback - ElMaswso3a{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/feedback.css' %}">
+
+<body>
+
+    <div class="feedback-container">
+        <form id="feedback-form" method="post">
+            {% csrf_token %}
+            <h1>Feedback</h1>
+            <div>
+                <label for="id_name">Name:</label>
+                {{ form.name }}
+            </div>
+            <div>
+                <label for="id_email">Email:</label>
+                {{ form.email }}
+            </div>
+            <div>
+                <label for="id_feedback">Feedback:</label>
+                {{ form.feedback }}
+            </div>
+            <div>
+                <input type="submit" value="Send">
+            </div>
+        </form>
+        <div id="message"></div>
+      
+        <p class="success-message" style="display:none;" >Feedback sent successfully!</p>
+    
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#feedback-form').submit(function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Serialize form data
+                var formData = $(this).serialize();
+
+                // AJAX request
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "feedback" %}',
+                    data: formData,
+                    dataType: 'json', // Expect JSON response
+                    success: function (response) {
+                        if (response.success) {
+                            // Display success message
+                            $('#message').html('<p class="success-message">Feedback sent successfully!</p>');
+                            // Clear form fields
+                            $('#feedback-form')[0].reset();
+                        } else {
+                            // Display validation errors or other errors
+                            $('#message').html('<p class="error-message">Error: ' + response.errors + '</p>');
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        // Display error message
+                        $('#message').html('<p class="error-message">Error: ' + errorThrown + '</p>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+{% endblock %}

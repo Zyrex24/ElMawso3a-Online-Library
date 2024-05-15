@@ -1,0 +1,254 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #19A7CE;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #146C94;
+}
+
+.main {
+    padding-top: 80px;
+    padding-bottom: 245px;
+}
+
+.cl {
+    background-color: #F6F1F1;
+}
+
+#titlehref a{
+    color: black;
+}
+
+#titlehref a:hover {
+    text-decoration: none;
+}
+
+#titlehref a:visited {
+    color: black;
+}
+
+#titlehref a:visited:hover {
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+
+a:visited:hover {
+    text-decoration: none;
+}
+
+a:link {
+    color: white;
+}
+
+a:link:hover {
+    text-decoration: none;
+}
+
+a:active {
+    color: white;
+}   
+
+
+
+#viewBooks {
+    display: block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 6px solid black;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+section img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.updateAction,
+.deleteAction {
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.updateAction,
+.deleteAction td{
+    border: none;
+}
+
+
+.updateAction {
+    background-color: darkgrey;
+}
+
+.deleteAction {
+    background-color: red;
+}
+
+.updateAction:hover {
+    background-color: grey;
+}
+
+.deleteAction:hover {
+    background-color: darkred;
+}
+
+#addBookForm {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #AFD3E2;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Box Shadow */
+}
+
+#addBookForm label {
+    color: black;
+    /* Label Color */
+}
+
+#addBookForm input,
+#addBookForm textarea,
+#addBookForm button {
+    background-color: white;
+    /* Input Background Color */
+    border: none;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#addBookForm textarea {
+    height: 100px;
+    resize: none;
+}
+
+#addBookForm input:focus,
+#addBookForm textarea:focus {
+    outline: none;
+    box-shadow: 0 0 5px #146C94;
+    /* Focus Color */
+}
+
+#addBookForm button {
+    background-color: #19A7CE;
+    /* Button Color */
+    color: white;
+    cursor: pointer;
+}
+
+#addBookForm button:hover {
+    background-color: #146C94;
+    /* Button Hover Color */
+}
+
+
+#uploadForm {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #AFD3E2;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Box Shadow */
+}
+
+#uploadForm label {
+    color: black;
+    /* Label Color */
+}
+
+#uploadForm input,
+#uploadForm button {
+    background-color: white;
+    /* Input Background Color */
+    border: none;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#uploadForm input:focus {
+    outline: none;
+    box-shadow: 0 0 5px #146C94;
+    /* Focus Color */
+}
+
+#uploadForm button {
+    background-color: #19A7CE;
+    /* Button Color */
+    color: white;
+    cursor: pointer;
+}
+
+#uploadForm button:hover {
+    background-color: #146C94;
+    /* Button Hover Color */
+}

@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.about-us{
+    display: flex;
+}
+.absoutusMainHeader{
+    margin-left: 50px;
+    font-size:50px;
+}
+.aboutusP{
+    margin-left: 30px;
+    font-size:20px;
+}
+
+.aboutus-image-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 60px;
+}
+.aboutus-image-container img {
+    width: 100%;
+    height: 600px;
+    margin-bottom: -10%;
+    padding-bottom: 10%;
+}
+.aboutusText{
+    position: absolute;
+    top: 50%;
+    left:35%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.cl {
+    background-color: #F6F1F1;
+}

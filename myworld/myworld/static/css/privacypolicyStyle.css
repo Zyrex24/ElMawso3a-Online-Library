@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.PrivacymainHeader{
+    color: black;
+    font-weight:bold;
+    font-size: 50px;
+    margin-top : 60px;
+}
+.PrivacyHeaders{
+    color: black;
+    font-weight:bold;
+    font-size: 30px;
+}
+.PrivacyP{
+
+    font-size: 20px;
+}
+.Privacylink:link{
+    color: #146C94;
+    font-size: 30px;
+    text-decoration: none;
+}
+.Privacylink:visited{
+    color: grey;
+}
+.Privacylink:hover{
+    color: tomato;
+}
+.Privacylink:active{
+    color: yellow;
+}
+.privacy-policy{
+    margin-left: 30px;
+}
+
+.cl {
+    background-color: #F6F1F1;
+}

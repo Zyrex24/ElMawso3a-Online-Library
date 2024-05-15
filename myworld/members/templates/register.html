@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/register.js' %}"></script>
+</head>
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #19A7CE !important;
+    }
+    .user_card {
+        width: 350px;
+        margin-top: auto;
+        margin-bottom: auto;
+        background: #AFD3E2;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 5px;
+    }
+
+    .form_container {
+        margin-top: 20px;
+    }
+
+    #form-title {
+        color: black;
+    }
+
+    .login_btn {
+        width: 100%;
+        background: #33ccff !important;
+        color: white !important;
+    }
+
+    .login_btn:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+
+    .login_container {
+        padding: 0 2rem;
+    }
+
+    .input-group-text {
+        background: #146C94 !important;
+        color: white !important;
+        border: 0 !important;
+        border-radius: 0.25rem 0 0 0.25rem !important;
+    }
+
+    .input_user,
+    .input_pass:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+    .img_nav{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+    .header_img2{
+        width: 180px;
+        height: 60px;
+    }
+</style>
+<body>
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+                <div class="d-flex justify-content-center">
+                    <!-- Wrap the image inside an anchor tag -->
+                    <a href="{% url 'index' %}" class="img_nav">
+                        <img src="{% static 'image/elmawso3a3.png' %}" alt="ElMawso3a Logo" class="header_img2">
+                    </a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <h3 id="form-title">REGISTER ACCOUNT</h3>
+                </div>
+                <div class="d-flex justify-content-center form_container">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <!-- Display form errors -->
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <strong>Error!</strong> Please correct the following errors:
+                                <ul>
+                                    {% for field, error_list in form.errors.items %}
+                                        {% for error in error_list %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            {{ form.username }}
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                            </div>
+                            {{ form.email }}
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            {{ form.password1 }}
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            {{ form.password2 }}
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
+                            </div>
+                            {{ form.user_type }}
+                        </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <input class="btn login_btn" type="submit" value="Register Account">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="mt-4">
+                    <div class="d-flex justify-content-center links">
+                        Already have an account? <a href="{% url 'login' %}" class="ml-2">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+     //We start indexing at one because CSRF_token is considered an input field 
+        //Query All input fields
+        let form_fields = document.getElementsByTagName('input')
+        form_fields[1].placeholder='Username..';
+        form_fields[2].placeholder='Email..';
+        form_fields[3].placeholder='Enter password...';
+        form_fields[4].placeholder='Re-enter Password...';
+
+        for (let field in form_fields){   
+            form_fields[field].className += ' form-control'
+        }
+</script>
+</html>

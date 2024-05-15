@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="ElMaswso3a is a platform that provides a vast collection of books, novels, and resources for our readers.">
+    <title id="pageTitle">Home - ElMaswso3a</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/Home.css' %}">
+</head>
+
+<body class="cl">
+    <div>
+        {% include 'header.html' %}
+        
+        <section class="main">
+            <h1>Welcome to ElMaswso3a!</h1>
+            <p>ElMaswso3a is a platform that provides a vast collection of books, novels, and resources for our readers.
+                We offer amazing books with NO SPECIFIC RETURN DATE!!
+                <br>
+                <br>
+                Whether you're a student, researcher, or simply an avid reader, you'll find a wide range of materials to
+                explore. Our mission is to promote knowledge, learning, and intellectual growth. Start your reading
+                journey with us today!</p>
+                <br>
+        </section>
+        <section>
+            <form method="GET" action="{% url 'search_books' %}">
+                <input id="search2" type="text" name="search_query" placeholder="Search...">
+                <select id="search3" name="search_category">
+                    <option value="title">Title</option>
+                    <option value="author">Author</option>
+                    <option value="category">Category</option>
+                </select>
+                <button id="search3" type="submit">Search</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Featured Books</h2>
+        </section>
+        <section class="featured-books">
+            <div class="scroll-container">
+                {% for book in featured_books %}
+                    <a href="{% url 'book' pk=book.id %}">
+                        <img src="{{ book.image }}" alt="{{ book.title }}">
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section>
+            <h2>Special Books</h2>
+        </section>
+        <section class="Special-books">
+            <div class="scroll-container">
+                {% for book_id, thumbnail_url, alt_text in special_books %}
+                    <a href="{% url 'book' pk=book_id %}">
+                        <img src="{{ thumbnail_url }}" alt="{{ alt_text }}">
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+
+        {% include 'footer.html' %}
+        </div>
+    </body>
+</html>

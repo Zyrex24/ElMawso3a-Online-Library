@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Books - ElMaswso3a{% endblock %}
+
+{% block content %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/books.css' %}">
+  <h1>Search Results</h1>
+
+  <form method="GET" action="{% url 'books' %}">
+    <input id="search2" type="text" name="search_query" placeholder="Search..." value="{{ search_query }}">
+    <select id="search3" name="search_category">
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="category">Category</option>
+    </select>
+    <button id="search3" type="submit">Search</button>
+  </form>
+
+
+  <h2>Books</h2>
+  <ul>
+    {% if books %}
+      {% for book in books %}
+        <li>
+          <a href="{% url 'book' pk=book.id %}">{{ book.title }}
+          {% if book.image %}
+            <img src="{{ book.image }}" alt="{{ book.title }} image">
+          {% endif %}
+          </a>
+          <p>Author(s): {{ book.author }} </p>
+          {% if book.category %} <p>Category: {{ book.category }} </p> {% endif %}
+          {% if book.available %}
+                <p class="book-text book-availability">Available</p>
+            {% else %}
+                <p class="book-text book-availability">Not Available</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    {% else %}
+      <p>No books found.</p>
+    {% endif %}
+  </ul>
+
+{% endblock %}

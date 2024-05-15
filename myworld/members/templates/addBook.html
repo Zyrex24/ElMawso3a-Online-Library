@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Add Book</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br><br>
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author"><br><br>
+        <label for="isbn">ISBN:</label><br>
+        <input type="text" id="isbn" name="isbn"><br><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description"></textarea><br><br>
+        <label for="publisher">Publisher:</label><br>
+        <input type="text" id="publisher" name="publisher"><br><br>
+        <label for="category">Category:</label><br>
+        <input type="text" id="category" name="category"><br><br>
+        <label for="image">Image:</label><br>
+        <input type="file" id="image" name="image"><br><br>
+        <input type="submit" value="Add Book">
+    </form>
+{% endblock %}

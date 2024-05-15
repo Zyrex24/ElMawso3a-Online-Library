@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Admin dashboard for managing the library.">
+    <title>Admin Dashboard - ElMaswso3a</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <script src="{% static 'js/admin.js' %}"></script>
+</head>
+<body class="cl">
+    <div class="admin-container">
+        {% include 'header.html' %}
+        <section class="main cl">
+            <h1>Admin Dashboard</h1>
+            <p>Welcome, {{ request.user.username }} ! You have access to the following features:</p>
+            <ul>
+                <li><button id="uploadImg" onclick="toggleUploadForm();">Upload an Image to the server</button></li>
+                <li><button id="feedbacksBtn" onclick="toggleFeedbacks();">View feedbacks</button></li>
+                <li><button id="viewBtn" onclick="toggleViewBooks();">View all books in the library</button></li>
+                <li><button id="addBtn" onclick="toggleAddForm();">Add a new book to the library</button></li>
+                <li><button id="updateBtn" onclick="toggleUpdateBook();">Update an existing book in the library</button></li>
+                <li><button id="deleteBtn" onclick="toggleDeleteBook();">Delete a book from the library</button></li>
+            </ul>
+            <div id="uploadForm" style="display: none;">
+                <h2>Upload an Image</h2>
+                <form method="post" action="{% url 'admin' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="image">Image:</label>
+                    <input type="file" id="image" name="image" required><br><br>
+                    <p>Your Image URL is:  http://127.0.0.1:8000/thumbnail/image.format </p>
+                    <button type="submit" name="upload">Upload Image</button>
+                </form>
+            </div>
+            <div id="feedbacks" style="display: none;">
+                <h2>Feedbacks</h2>
+                <table>
+                    {% csrf_token %}
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Feedback</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for feedback in feedbacks %}
+                            <tr>
+                                <td>{{ feedback.name }}</td>
+                                <td>{{ feedback.email }}</td>
+                                <td>{{ feedback.feedback }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div id="viewBooks" style="display: none;">
+                <h2>All Books in the Library</h2>
+                <form method="post" action="{% url 'admin' %}">
+                    <table>
+                        {% csrf_token %}
+                        {% comment %} <button type="submit" name="delete" value="all" class="deleteAll">Delete All</button> {% endcomment %}
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>ISBN</th>
+                            <th>Publisher</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                            <tr>
+                                <td>{% if book.image %}<img src="{{ book.image }}" alt="Book Image">{% endif %}</td>
+                                <td id="titlehref"><a href="{% url 'book' pk=book.id %}">{{ book.title }}</a></td>
+                                <td>{{ book.author }}</td>
+                                <td>{{ book.isbn }}</td>
+                                <td>{{ book.publisher }}</td>
+                                <td>{% if book.available %}Available{% else %}Not Available{% endif %}</td>
+                                <td class="updateBook" style="display: none" style="white-space:nowrap;border:none;">
+                                    <a href="{% url 'update_book' book.id %}" value="{{ book.id }}"><button type="button" class="updateAction" name="update" value="{{ book.id }}">Update</button></a>
+                                </td>
+                                <td class="deleteBook" style="display: none" style="white-space:nowrap;border:none;">
+                                    <button class="deleteAction" name="delete" value="{{ book.id }}">Delete</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+
+            </div>
+            <div id="addBookForm" style="display: none;">
+                <h2>Add a New Book</h2>
+                <form method="post" action="{% url 'admin' %}">
+                    {% csrf_token %}
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required><br><br>
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" required><br><br>
+                    <label for="isbn">ISBN:</label><br>
+                    <input type="text" id="isbn" name="isbn" required><br><br>
+                    <label for="description">Description:</label><br>
+                    <textarea id="description" name="description"></textarea><br><br>
+                    <label for="publisher">Publisher:</label><br>
+                    <input type="text" id="publisher" name="publisher"required><br><br>
+                    <label for="category">Category:</label><br>
+                    <input type="text" id="category" name="category"><br><br>
+                    <label for="image">Image Url:</label><br>
+                    <input type="url" id="image" name="image" value="http://127.0.0.1:8000/thumbnail/yourImage.png"><br><br>
+                    <button type="submit" name="add">Add Book</button>
+                </form>
+            </div>
+        </section>
+
+        {% include 'footer.html' %}
+        
+        <script>
+            function toggleAddForm() {
+                var addBookForm = document.getElementById('addBookForm');
+                if (addBookForm.style.display === 'none') {
+                    addBookForm.style.display = 'block';
+                } else {
+                    addBookForm.style.display = 'none';
+                }
+            }
+
+            function toggleUploadForm() {
+                var uploadForm = document.getElementById('uploadForm');
+                if (uploadForm.style.display === 'none') {
+                    uploadForm.style.display = 'block';
+                } else {
+                    uploadForm.style.display = 'none';
+                }
+            }
+
+            function toggleFeedbacks() {
+                var feedbacks = document.getElementById('feedbacks');
+                if (feedbacks.style.display === 'none') {
+                    feedbacks.style.display = 'block';
+                } else {
+                    feedbacks.style.display = 'none';
+                }
+            }
+
+            function toggleViewBooks() {
+                var viewBooks = document.getElementById('viewBooks');
+                if (viewBooks.style.display === 'none') {
+                    viewBooks.style.display = 'block';
+                } else {
+                    viewBooks.style.display = 'none';
+                }
+            }
+
+            function toggleDeleteBook() {   
+                var deleteBooks = document.getElementsByClassName('deleteBook');
+                for (var i = 0; i < deleteBooks.length; i++) {
+                    var deleteBook = deleteBooks[i];
+                    if (deleteBook.style.display === 'none') {
+                        deleteBook.style.display = 'block';
+                    } else {
+                        deleteBook.style.display = 'none';
+                    }
+                }
+            }
+            function toggleUpdateBook() {
+                var updateBooks = document.getElementsByClassName('updateBook');
+                for (var i = 0; i < updateBooks.length; i++) {
+                    var updateBook = updateBooks[i];
+                    if (updateBook.style.display === 'none') {
+                        updateBook.style.display = 'block';
+                    } else {
+                        updateBook.style.display = 'none';
+                    }
+                }
+            }
+
+            function confirmDelete() {
+                return confirm("Are you sure you want to delete this book?");
+            }
+
+            // Attach event listeners to delete buttons
+            var deleteButtons = document.getElementsByClassName('deleteAction');
+            for (var i = 0; i < deleteButtons.length; i++) {
+                deleteButtons[i].addEventListener('click', function(event) {
+                    if (!confirmDelete()) {
+                        event.preventDefault(); // Prevent form submission if user cancels
+                    }
+                });
+            }
+        </script>
+    </div>
+</body>
+</html>

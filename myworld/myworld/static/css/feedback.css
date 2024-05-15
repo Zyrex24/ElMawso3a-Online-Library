@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:  #f1f1f1;
+}
+
+.feedback-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #AFD3E2;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    margin-top: 150px;
+    margin-bottom: 76px;
+}
+
+.feedback-container form div {
+    margin-bottom: 15px;
+}
+
+.feedback-container form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.feedback-container form input[type="text"],
+.feedback-container form input[type="email"],
+.feedback-container form textarea {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+.feedback-container form textarea {
+    height: 100px;
+
+}
+
+.feedback-container form input[type="submit"] {
+    width: 99%;
+    padding: 10px;
+    border: none;
+    background-color: #19A7CE;
+    color: #F6F1F1;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.success-message {
+    background-color: grey;
+    color: white;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
