@@ -122,8 +122,14 @@
         <script>
             function toggleAddForm() {
                 var addBookForm = document.getElementById('addBookForm');
+                var uploadForm = document.getElementById('uploadForm');
+                var feedbacks = document.getElementById('feedbacks');
+                var viewBooks = document.getElementById('viewBooks');
                 if (addBookForm.style.display === 'none') {
                     addBookForm.style.display = 'block';
+                    uploadForm.style.display = 'none';
+                    feedbacks.style.display = 'none';
+                    viewBooks.style.display = 'none';
                 } else {
                     addBookForm.style.display = 'none';
                 }
@@ -131,8 +137,14 @@
 
             function toggleUploadForm() {
                 var uploadForm = document.getElementById('uploadForm');
+                var addBookForm = document.getElementById('addBookForm');
+                var feedbacks = document.getElementById('feedbacks');
+                var viewBooks = document.getElementById('viewBooks');
                 if (uploadForm.style.display === 'none') {
                     uploadForm.style.display = 'block';
+                    addBookForm.style.display = 'none';
+                    feedbacks.style.display = 'none';
+                    viewBooks.style.display = 'none';
                 } else {
                     uploadForm.style.display = 'none';
                 }
@@ -140,8 +152,14 @@
 
             function toggleFeedbacks() {
                 var feedbacks = document.getElementById('feedbacks');
+                var uploadForm = document.getElementById('uploadForm');
+                var addBookForm = document.getElementById('addBookForm');
+                var viewBooks = document.getElementById('viewBooks');
                 if (feedbacks.style.display === 'none') {
                     feedbacks.style.display = 'block';
+                    uploadForm.style.display = 'none';
+                    addBookForm.style.display = 'none';
+                    viewBooks.style.display = 'none';
                 } else {
                     feedbacks.style.display = 'none';
                 }
@@ -149,8 +167,14 @@
 
             function toggleViewBooks() {
                 var viewBooks = document.getElementById('viewBooks');
+                var uploadForm = document.getElementById('uploadForm');
+                var addBookForm = document.getElementById('addBookForm');
+                var feedbacks = document.getElementById('feedbacks');
                 if (viewBooks.style.display === 'none') {
                     viewBooks.style.display = 'block';
+                    uploadForm.style.display = 'none';
+                    addBookForm.style.display = 'none';
+                    feedbacks.style.display = 'none';
                 } else {
                     viewBooks.style.display = 'none';
                 }
