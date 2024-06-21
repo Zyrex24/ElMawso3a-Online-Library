@@ -18,6 +18,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from django.core.serializers import serialize
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 
 def index(request):
@@ -52,7 +53,7 @@ def admin(request):
         elif 'delete' in request.POST:
             book_id = request.POST.get('delete')
             book = Book.objects.get(id=book_id)
-            book.delete()    
+            book.delete()
         elif 'update' in request.POST:
             book_id = request.POST.get('update')
             book = Book.objects.get(id=book_id)
@@ -110,8 +111,8 @@ def borrow_book(request):
         except Book.DoesNotExist:
             return JsonResponse({'success': False, 'message': 'Book does not exist'})
     else:
-        return JsonResponse({'success': False, 'message': 'Invalid request method'}) 
-    
+        return JsonResponse({'success': False, 'message': 'Invalid request method'})
+
 
 @login_required(login_url='login')
 def return_book(request):
@@ -145,19 +146,15 @@ def add_to_cart(request):
     if request.method == 'POST':
         book_id = request.POST.get('book')
         book = Book.objects.get(pk=book_id)
-        # Check if the book is already in the user's cart
         if CartItem.objects.filter(user=request.user, book=book).exists():
             return JsonResponse({'success': False, 'message': 'Book already in cart'})
         else:
-            # Assuming the user is authenticated and you have access to request.user
-            CartItem.objects.create(user=request.user, book=book)
-            # Mark the book as unavailable
+            cart_item = CartItem.objects.create(user=request.user, book=book)
             book.available = False
             book.save()
-            return JsonResponse({'success': True, 'book': book.title, 'book_id': book_id})
+            return JsonResponse({'success': True, 'book': book.title, 'book_id': book_id, 'added_time': cart_item.added_time.timestamp() * 1000})
     else:
         return JsonResponse({'success': False, 'message': 'Invalid request method'})
-
 
 @csrf_exempt
 def clear_cart(request):
@@ -175,7 +172,7 @@ def clear_cart(request):
         return JsonResponse({'success': True, 'available_books': available_books})
     else:
         return JsonResponse({'success': False, 'message': 'Invalid request method'})
-    
+
 
 def all_books(request):
     # Retrieve all available books
@@ -212,13 +209,13 @@ def feedback(request):
 
 
 @unauthenticated_user
-def user_login(request):    
+def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        
+
         user = authenticate(request, username=username, password=password)
-        
+
         if user is not None:
             login(request, user)
             return redirect('index')
@@ -308,13 +305,13 @@ def add_book(request):
 #     form = BookForm(instance=book)
 #     context = {}
 #     context['book'] = book
-    
+
 #     if request.method == 'POST':
 #         form = BookForm(request.POST, request.FILES, instance=book)
 #         if form.is_valid():
 #             form.save()
 #             return redirect('admin')
-    
+
 #     context = {'form':form}
 #     return render(request, 'updateBook.html', context)
 
@@ -324,13 +321,13 @@ def update_book(request, pk):
     book = Book.objects.get(id=pk)
     form = BookForm(instance=book)
     context = {'book': book, 'form': form}
-    
+
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
             form.save()
             return redirect('admin')
-    
+
     return render(request, 'updateBook.html', context)
 
 # @login_required(login_url='login')
@@ -358,8 +355,8 @@ def serve_thumbnail(request, image_name):
         thumbnail.save(thumb_io, format=format)
         thumb_io.seek(0)
         return HttpResponse(thumb_io, content_type='image/' + format.lower())
-    
-    
+
+
 def search_books(request):
     form = BookSearchForm(request.GET)
     books = []
@@ -367,13 +364,12 @@ def search_books(request):
     if form.is_valid():
         search_query = form.cleaned_data['search_query']
         search_category = form.cleaned_data['search_category']
-        
+
         if search_category == 'title':
             books = Book.objects.filter(title__icontains=search_query)
         elif search_category == 'author':
             books = Book.objects.filter(author__icontains=search_query)
         elif search_category == 'category':
             books = Book.objects.filter(category__icontains=search_query)
-            
-    return render(request, 'search_results.html', {'form': form, 'books': books})
 
+    return render(request, 'search_results.html', {'form': form, 'books': books})

@@ -10,7 +10,7 @@
 </head>
 <body class="cl">
 <div>
-    
+
     {% include 'header.html' %}
 
     <section>
@@ -29,7 +29,7 @@
                 <tr>
                     <td>{{ item.book.title }}</td>
                     <td>
-                        <button type="button" id="return-button" class="cart-button" data-item-id="{{ item.book.id }}">Return</button>
+                        <button type="button" class="cart-button return-button" data-item-id="{{ item.book.id }}" data-added-time="{{ item.added_time }}">Return</button>
                     </td>
                 </tr>
                 {% endfor %}
@@ -63,11 +63,11 @@
 <script>
     $(document).ready(function() {
         // Return Button Functionality
-        $(document).on('click', '#return-button', function() {
+        $(document).on('click', '.return-button', function() {
             var button = $(this);
             var bookId = button.data('item-id');
             var csrftoken = getCookie('csrftoken');
-    
+
             $.ajax({
                 type: 'POST',
                 url: '/return-book/',
@@ -94,6 +94,7 @@
                 }
             });
         });
+
         // Add to Cart Button Functionality
         $('#add-to-cart-form').submit(function(event) {
             event.preventDefault(); // Prevent default form submission
@@ -106,8 +107,10 @@
                     // Handle success, maybe update the cart display
                     if (response.success) {
                         var bookId = response.book_id;
+                        var currentTime = new Date().getTime();
                         $('#add-to-cart-form select[name="book"] option[value="' + bookId + '"]').remove();
-                        $('#cart-items').append('<tr><td>' + response.book + '</td><td><button type="button" class="cart-button" id="return-button" data-item-id="' + bookId + '">Return</button></td></tr>');
+                        $('#cart-items').append('<tr><td>' + response.book + '</td><td><button type="button" class="cart-button return-button" data-item-id="' + bookId + '" data-added-time="' + currentTime + '">Return</button></td></tr>');
+                        setReturnTimer(bookId, currentTime, 604800000); // Set timer for 1 week
                     } else {
                         console.error(response.message);
                     }
@@ -118,7 +121,7 @@
                 }
             });
         });
-    
+
         // Clear Cart Button Functionality
         $('#clear-button').click(function() {
             $.ajax({
@@ -155,10 +158,33 @@
                 }
             });
         });
-    
-        // Other JavaScript code...
+
+        // Function to set a return timer
+        function setReturnTimer(bookId, addedTime, duration) {
+            var currentTime = new Date().getTime();
+            var elapsedTime = currentTime - addedTime;
+            var remainingTime = duration - elapsedTime;
+
+            if (remainingTime > 0) {
+                setTimeout(function() {
+                    $('.return-button[data-item-id="' + bookId + '"]').click();
+                }, remainingTime);
+            } else {
+                $('.return-button[data-item-id="' + bookId + '"]').click();
+            }
+        }
+
+        // Initialize timers for existing items
+        $('#cart-items .return-button').each(function() {
+            var button = $(this);
+            var bookId = button.data('item-id');
+            var addedTime = button.data('added-time');
+            setReturnTimer(bookId, addedTime, 604800000); // Set timer for 1 week
+        });
+
+
     });
-    
+
     function getCookie(name) {
         var cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -174,8 +200,6 @@
         }
         return cookieValue;
     }
-    
-    
 </script>
 
 </body>
