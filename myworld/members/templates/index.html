@@ -1,70 +1,163 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="ElMaswso3a is a platform that provides a vast collection of books, novels, and resources for our readers.">
-    <title id="pageTitle">Home - ElMaswso3a</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/Home.css' %}">
-</head>
+{% block title %}Home{% endblock %}
 
-<body class="cl">
-    <div>
-        {% include 'header.html' %}
-
-        <section class="main">
-            <h1>Welcome to ElMaswso3a!</h1>
-            <p>ElMaswso3a is a platform that provides a vast collection of books, novels, and resources for our readers.
-                We offer amazing books with a FIXED 1-week borrowing period!
-                <br>
-                <br>
-                Whether you're a student, researcher, or simply an avid reader, you'll find a wide range of materials to
-                explore. Our mission is to promote knowledge, learning, and intellectual growth. Start your reading
-                journey with us today!</p>
-                <br>
-        </section>
-        <section>
-            <form method="GET" action="{% url 'search_books' %}">
-                <input id="search2" type="text" name="search_query" placeholder="Search...">
-                <select id="search3" name="search_category">
-                    <option value="title">Title</option>
-                    <option value="author">Author</option>
-                    <option value="category">Category</option>
-                </select>
-                <button id="search3" type="submit">Search</button>
-            </form>
-        </section>
-
-        <section>
-            <h2>Featured Books</h2>
-        </section>
-        <section class="featured-books">
-            <div class="scroll-container">
-                {% for book in featured_books %}
-                    <a href="{% url 'book' pk=book.id %}">
-                        <img src="{{ book.image }}" alt="{{ book.title }}">
+{% block content %}
+<div ng-controller="SearchController">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary-600 to-primary-700 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6" data-en="Welcome to ElMawso3a" data-ar="مرحباً بكم في الموسوعة">
+                Welcome to ElMawso3a
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-blue-100" data-en="Your Gateway to Knowledge" data-ar="بوابتكم إلى المعرفة">
+                Your Gateway to Knowledge
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-2xl mx-auto">
+                <a href="{% url 'books' %}" class="btn-primary text-lg px-8 py-3 rounded-lg font-semibold hover:bg-primary-800 transition-colors" aria-label="Explore Books">
+                    <i class="fas fa-book mr-2" aria-hidden="true"></i>
+                    <span data-en="Explore Books" data-ar="استكشف الكتب">Explore Books</span>
+                </a>
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'register' %}" class="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors" aria-label="Join Now">
+                        <i class="fas fa-user-plus mr-2" aria-hidden="true"></i>
+                        <span data-en="Join Now" data-ar="انضم الآن">Join Now</span>
                     </a>
-                {% endfor %}
+                {% endif %}
             </div>
-        </section>
-
-        <section>
-            <h2>Special Books</h2>
-        </section>
-        <section class="Special-books">
-            <div class="scroll-container">
-                {% for book_id, thumbnail_url, alt_text in special_books %}
-                    <a href="{% url 'book' pk=book_id %}">
-                        <img src="{{ thumbnail_url }}" alt="{{ alt_text }}">
-                    </a>
-                {% endfor %}
-            </div>
-        </section>
-
-        {% include 'footer.html' %}
         </div>
-    </body>
-</html>
+    </section>
+    
+    <!-- Search Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-8 text-gray-900" data-en="Search Our Collection" data-ar="ابحث في مجموعتنا">
+                    Search Our Collection
+                </h2>
+                <form method="GET" action="{% url 'books' %}" class="flex flex-col md:flex-row gap-4" role="search" aria-label="Book search">
+                    <div class="flex-1">
+                        <label for="search-input" class="sr-only">Search books</label>
+                        <input 
+                            id="search-input"
+                            type="text" 
+                            name="search_query" 
+                            placeholder="Search for books..." 
+                            class="form-input text-lg"
+                            data-en-placeholder="Search for books..." 
+                            data-ar-placeholder="ابحث عن الكتب..."
+                            aria-describedby="search-help"
+                        >
+                        <div id="search-help" class="sr-only">Enter keywords to search for books by title, author, or category</div>
+                    </div>
+                    <div class="md:w-48">
+                        <label for="search-category" class="sr-only">Search category</label>
+                        <select id="search-category" name="search_category" class="form-input">
+                            <option value="title" data-en="Title" data-ar="العنوان">Title</option>
+                            <option value="author" data-en="Author" data-ar="المؤلف">Author</option>
+                            <option value="category" data-en="Category" data-ar="الفئة">Category</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary px-8 py-3 text-lg font-semibold" aria-label="Search books">
+                        <i class="fas fa-search mr-2" aria-hidden="true"></i>
+                        <span data-en="Search" data-ar="بحث">Search</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Books Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-900" data-en="Featured Books" data-ar="الكتب المميزة">
+                Featured Books
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for book in featured_books %}
+                <article class="card hover:shadow-lg transition-shadow duration-300" role="article" aria-labelledby="book-{{ book.id }}-title">
+                    <div class="aspect-w-3 aspect-h-4 bg-gray-200">
+                        {% if book.image %}
+                            <img src="{{ book.image }}" alt="Cover of {{ book.title }}" class="w-full h-48 object-cover" loading="lazy">
+                        {% else %}
+                            <div class="w-full h-48 bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
+                                <i class="fas fa-book text-4xl text-primary-600" aria-hidden="true"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="p-4">
+                        <h3 id="book-{{ book.id }}-title" class="font-semibold text-lg mb-2 text-gray-900 line-clamp-2">{{ book.title }}</h3>
+                        <p class="text-gray-600 mb-2">{{ book.author }}</p>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-3">{{ book.description|truncatewords:15 }}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs px-2 py-1 bg-primary-100 text-primary-800 rounded-full">{{ book.category|default:"General" }}</span>
+                            <a href="{% url 'book' book.id %}" class="btn-primary text-sm px-4 py-2" aria-label="View details for {{ book.title }}">
+                                <span data-en="View Details" data-ar="عرض التفاصيل">View Details</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                {% empty %}
+                <div class="col-span-full text-center py-12">
+                    <i class="fas fa-book-open text-6xl text-gray-300 mb-4" aria-hidden="true"></i>
+                    <p class="text-gray-500 text-lg" data-en="No featured books available at the moment." data-ar="لا توجد كتب مميزة متاحة في الوقت الحالي.">
+                        No featured books available at the moment.
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+    <!-- Special Collection Section -->
+    {% if special_books %}
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-900" data-en="Special Collection" data-ar="المجموعة الخاصة">
+                Special Collection
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {% for book_id, image_url, alt_text in special_books %}
+                <article class="text-center group" role="article">
+                    <div class="relative overflow-hidden rounded-lg shadow-md group-hover:shadow-xl transition-shadow duration-300">
+                        <img src="{{ image_url }}" alt="{{ alt_text }}" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
+                            <a href="{% url 'book' book_id %}" class="btn-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0" aria-label="View special book">
+                                <i class="fas fa-eye mr-2" aria-hidden="true"></i>
+                                <span data-en="View Book" data-ar="عرض الكتاب">View Book</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    
+    <!-- Call to Action Section -->
+    <section class="py-16 bg-primary-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6" data-en="Ready to Start Reading?" data-ar="مستعد لبدء القراءة؟">
+                Ready to Start Reading?
+            </h2>
+            <p class="text-xl mb-8 text-blue-100" data-en="Join thousands of readers who trust ElMawso3a for their reading journey." data-ar="انضم إلى آلاف القراء الذين يثقون في الموسوعة لرحلة القراءة.">
+                Join thousands of readers who trust ElMawso3a for their reading journey.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{% url 'books' %}" class="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors" aria-label="Browse All Books">
+                    <i class="fas fa-book mr-2" aria-hidden="true"></i>
+                    <span data-en="Browse All Books" data-ar="تصفح جميع الكتب">Browse All Books</span>
+                </a>
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'register' %}" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors" aria-label="Create Account">
+                        <i class="fas fa-user-plus mr-2" aria-hidden="true"></i>
+                        <span data-en="Create Account" data-ar="إنشاء حساب">Create Account</span>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

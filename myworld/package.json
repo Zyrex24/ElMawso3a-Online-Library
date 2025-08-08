@@ -1,0 +1,25 @@
+{
+  "name": "elmawso3a-frontend",
+  "version": "1.0.0",
+  "description": "Modern frontend for ElMawso3a Online Library",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./static/src/app.css -o ./static/build/app.css --minify",
+    "watch:css": "tailwindcss -i ./static/src/app.css -o ./static/build/app.css --watch",
+    "dev": "npm run watch:css",
+    "build": "npm run build:css"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.1",
+    "@popperjs/core": "^2.11.8",
+    "angular": "^1.8.3",
+    "bootstrap": "^5.3.2"
+  }
+}

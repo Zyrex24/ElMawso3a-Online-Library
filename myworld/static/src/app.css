@@ -1,0 +1,125 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Import Bootstrap components selectively */
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+@import '../node_modules/bootstrap/scss/utilities';
+@import '../node_modules/bootstrap/scss/buttons';
+@import '../node_modules/bootstrap/scss/forms';
+@import '../node_modules/bootstrap/scss/nav';
+@import '../node_modules/bootstrap/scss/navbar';
+@import '../node_modules/bootstrap/scss/card';
+@import '../node_modules/bootstrap/scss/modal';
+@import '../node_modules/bootstrap/scss/dropdown';
+
+/* Font Awesome */
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+
+/* Custom styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-english text-secondary-900;
+  }
+  
+  [dir="rtl"] body {
+    @apply font-arabic;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary-500 hover:bg-secondary-600 text-white px-4 py-2 rounded-lg transition-colors duration-200;
+  }
+  
+  .form-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden;
+  }
+  
+  .navbar-brand {
+    @apply flex items-center space-x-2;
+  }
+  
+  [dir="rtl"] .navbar-brand {
+    @apply space-x-reverse;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .text-left {
+  text-align: right !important;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left !important;
+}
+
+[dir="rtl"] .ml-auto {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
+
+/* Language toggle */
+.language-toggle {
+  @apply inline-flex items-center space-x-2 px-3 py-1 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors;
+}
+
+[dir="rtl"] .language-toggle {
+  @apply space-x-reverse;
+}
+
+/* Admin sidebar */
+.admin-sidebar {
+  @apply fixed inset-y-0 left-0 z-50 w-64 bg-secondary-900 transform transition-transform duration-300 ease-in-out;
+}
+
+[dir="rtl"] .admin-sidebar {
+  @apply left-auto right-0;
+}
+
+.admin-sidebar.closed {
+  @apply -translate-x-full;
+}
+
+[dir="rtl"] .admin-sidebar.closed {
+  @apply translate-x-full;
+}
+
+/* Accessibility improvements */
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+}
+
+.focus\:not-sr-only:focus {
+  @apply static w-auto h-auto p-0 m-0 overflow-visible whitespace-normal;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

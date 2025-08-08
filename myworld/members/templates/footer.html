@@ -1,9 +1,98 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/footer.css' %}">
 
-<footer class="footer">
-        <br>
-        <p>&copy; ElMaswso3a</p>
-        <a href="{% url 'contactus' %}">Contact Us</a> | <a href="{% url 'privacypolicy' %}">Privacy Policy</a> | <a href="{% url 'termsofservices' %}">Terms of Service</a> |
-        <a href="{% url 'aboutus' %}">About Us</a>
-    </footer>
+<footer class="bg-secondary-900 text-white mt-auto" role="contentinfo">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Main footer content -->
+        <div class="py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Brand section -->
+            <div class="md:col-span-1">
+                <div class="flex items-center mb-4">
+                    <img src="{% static 'images/logo.svg' %}" alt="ElMawso3a Logo" class="h-8 w-auto">
+                    <span class="ml-2 text-xl font-bold">ElMawso3a</span>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed" data-en="Your trusted online library for discovering and borrowing books." data-ar="مكتبتك الإلكترونية الموثوقة لاكتشاف واستعارة الكتب.">
+                    Your trusted online library for discovering and borrowing books.
+                </p>
+                
+                <!-- Social links -->
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors" aria-label="Facebook">
+                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors" aria-label="Twitter">
+                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors" aria-label="Instagram">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-lg font-semibold mb-4" data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="{% url 'index' %}" class="text-gray-300 hover:text-white transition-colors text-sm" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                    <li><a href="{% url 'books' %}" class="text-gray-300 hover:text-white transition-colors text-sm" data-en="Browse Books" data-ar="تصفح الكتب">Browse Books</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'profile' %}" class="text-gray-300 hover:text-white transition-colors text-sm" data-en="My Profile" data-ar="ملفي الشخصي">My Profile</a></li>
+                        <li><a href="{% url 'borrowedbooks' %}" class="text-gray-300 hover:text-white transition-colors text-sm" data-en="My Books" data-ar="كتبي">My Books</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}" class="text-gray-300 hover:text-white transition-colors text-sm" data-en="Login" data-ar="تسجيل الدخول">Login</a></li>
+                        <li><a href="{% url 'register' %}" class="text-gray-300 hover:text-white transition-colors text-sm" data-en="Register" data-ar="التسجيل">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            
+            <!-- Information -->
+            <div>
+                <h3 class="text-lg font-semibold mb-4" data-en="Information" data-ar="معلومات">Information</h3>
+                <ul class="space-y-2">
+                    <li><a href="{% url 'aboutus' %}" class="text-gray-300 hover:text-white transition-colors text-sm" data-en="About Us" data-ar="من نحن">About Us</a></li>
+                    <li><a href="{% url 'contactus' %}" class="text-gray-300 hover:text-white transition-colors text-sm" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a></li>
+                    <li><a href="{% url 'feedback' %}" class="text-gray-300 hover:text-white transition-colors text-sm" data-en="Feedback" data-ar="التعليقات">Feedback</a></li>
+                    <li><a href="{% url 'termsofservices' %}" class="text-gray-300 hover:text-white transition-colors text-sm" data-en="Terms of Service" data-ar="شروط الخدمة">Terms of Service</a></li>
+                    <li><a href="{% url 'privacypolicy' %}" class="text-gray-300 hover:text-white transition-colors text-sm" data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div>
+                <h3 class="text-lg font-semibold mb-4" data-en="Contact Info" data-ar="معلومات الاتصال">Contact Info</h3>
+                <div class="space-y-2 text-sm text-gray-300">
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
+                        <a href="mailto:elmawso3alib@gmail.com" class="hover:text-white transition-colors">elmawso3alib@gmail.com</a>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-phone mr-2" aria-hidden="true"></i>
+                        <span>+20 123 456 7890</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-map-marker-alt mr-2 mt-1" aria-hidden="true"></i>
+                        <span data-en="Cairo, Egypt" data-ar="القاهرة، مصر">Cairo, Egypt</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom bar -->
+        <div class="border-t border-gray-700 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-300 text-sm" data-en=" 2025 ElMawso3a. All rights reserved." data-ar=" 2025 الموسوعة. جميع الحقوق محفوظة.">
+                    2025 ElMawso3a. All rights reserved.
+                </p>
+                
+                <!-- Accessibility statement -->
+                <div class="mt-4 md:mt-0">
+                    <span class="text-gray-300 text-sm" data-en="Built with accessibility in mind" data-ar="مصمم مع مراعاة إمكانية الوصول">
+                        Built with accessibility in mind
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

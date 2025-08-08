@@ -1,0 +1,55 @@
+/* Global site styles for modernized UI */
+
+:root {
+  --brand: #0d6efd;
+  --brand-dark: #0b5ed7;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+.navbar-brand span {
+  letter-spacing: 0.2px;
+}
+
+.card-img-top,
+img.book-thumb {
+  object-fit: cover;
+  border-radius: .5rem;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .75rem;
+}
+
+.scroll-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 10rem;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: .5rem;
+}
+
+.scroll-container img {
+  width: 10rem;
+  height: 14rem;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.scroll-container img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+}
+
+footer.footer {
+  background: #fff;
+}

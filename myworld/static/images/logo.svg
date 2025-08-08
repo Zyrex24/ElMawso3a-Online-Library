@@ -1,0 +1,7 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="40" height="40" rx="8" fill="#2563eb"/>
+  <path d="M8 12h24v2H8v-2zm0 4h24v2H8v-2zm0 4h16v2H8v-2z" fill="white"/>
+  <path d="M28 20v8a2 2 0 01-2 2h-4v-4h-4v4h-4a2 2 0 01-2-2v-8h16z" fill="white"/>
+  <circle cx="32" cy="8" r="6" fill="#f59e0b"/>
+  <text x="32" y="12" text-anchor="middle" fill="white" font-size="8" font-weight="bold">ع</text>
+</svg>
